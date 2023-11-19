@@ -14,7 +14,10 @@
     "@mysten/sui.js": "^0.46.1",
     "@nextui-org/react": "^2.2.9",
     "@tanstack/react-query": "^5.8.4",
+    "add": "^2.0.6",
     "framer-motion": "^10.16.5",
+    "next-themes": "^0.2.1",
+    "pnpm": "^8.10.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

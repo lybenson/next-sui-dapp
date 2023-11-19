@@ -10,11 +10,13 @@ import {
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { getFullnodeUrl } from '@mysten/sui.js/client'
 import { NextUIProvider } from '@nextui-org/react'
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
 
 const queryClient = new QueryClient()
 
 const { networkConfig } = createNetworkConfig({
   localnet: { url: getFullnodeUrl('localnet') },
+  testnet: { url: getFullnodeUrl('testnet') },
   mainnet: { url: getFullnodeUrl('mainnet') }
 })
 
@@ -22,11 +24,16 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <SuiClientProvider
       networks={networkConfig}
-      network='mainnet'
+      network='testnet'
     >
-      <WalletProvider>
+      <WalletProvider autoConnect>
         <NextUIProvider>
-          <App />
+          <NextThemesProvider
+            attribute='class'
+            defaultTheme='dark'
+          >
+            <App />
+          </NextThemesProvider>
         </NextUIProvider>
       </WalletProvider>
     </SuiClientProvider>
