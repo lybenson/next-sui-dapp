@@ -111,8 +111,8 @@ export default function Token() {
 
   return (
     <div className='p-10 text-2xl'>
-      <div className='text-slate-400'>only support testnet</div>
-      <div>network: {account?.chains}</div>
+      <div className='text-[red]'>only support testnet</div>
+      <div>current network: {account?.chains}</div>
       <div className='flex items-center justify-center mt-3'>
         <Input
           label='Input Mint amount'
