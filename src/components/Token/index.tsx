@@ -5,7 +5,7 @@ import {
   useSuiClientQuery
 } from '@mysten/dapp-kit'
 import { TransactionBlock } from '@mysten/sui.js/transactions'
-import { Button, Input, Spinner } from '@nextui-org/react'
+import { Button, Code, Input, Spinner } from '@nextui-org/react'
 import { useEffect, useState } from 'react'
 
 export default function Token() {
@@ -109,6 +109,25 @@ export default function Token() {
     )
   }
 
+  const code = `module robo::coin {
+    use std::option;
+    use sui::coin::{Self, TreasuryCap};
+    use sui::transfer;
+    use sui::tx_context::TxContext;
+
+    struct COIN has drop {}
+
+    fun init(witness: COIN, ctx: &mut TxContext) {
+        let (treasury_cap, metadata) = coin::create_currency<COIN>(witness, 6, b"ETH", b"Ethereum", b"https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png", option::none(), ctx);
+        transfer::public_freeze_object(metadata);
+        transfer::public_share_object(treasury_cap);
+    }
+
+    public entry fun mint(treasury_cap: &mut TreasuryCap<COIN>, amount: u64, recipient: address, ctx: &mut TxContext) {
+        coin::mint_and_transfer(treasury_cap, amount, recipient, ctx);
+    }
+}`
+
   return (
     <div className='p-10 text-2xl'>
       <div className='text-[red]'>only support testnet</div>
@@ -141,6 +160,16 @@ export default function Token() {
             coinBalance / BigInt(Math.pow(10, coinMetadata?.decimals || 1))
           ).toLocaleString()}
         </span>
+      </div>
+
+      <div className='text-left mt-10'>
+        <span>Contract code</span>
+        <Code
+          color='success'
+          className=' whitespace-pre-wrap text-left p-4'
+        >
+          {code}
+        </Code>
       </div>
     </div>
   )

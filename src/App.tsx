@@ -2,7 +2,8 @@ import './App.css'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import { Routes, Route } from 'react-router-dom'
-import Token from './components/Token'
+import routes from './routes'
+import { Card } from '@nextui-org/react'
 
 function App() {
   return (
@@ -11,14 +12,18 @@ function App() {
       <div className='flex h-full flex-1'>
         <Sidebar />
 
-        <div className='flex-1'>
+        <Card className='flex-1 m-10 p-10'>
           <Routes>
-            <Route
-              path='/token'
-              element={<Token />}
-            />
+            {routes.map((route) => {
+              return (
+                <Route
+                  path={route.pathname}
+                  element={route.element}
+                />
+              )
+            })}
           </Routes>
-        </div>
+        </Card>
       </div>
     </main>
   )
