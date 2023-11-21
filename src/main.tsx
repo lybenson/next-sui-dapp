@@ -11,6 +11,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { getFullnodeUrl } from '@mysten/sui.js/client'
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { HashRouter } from 'react-router-dom'
 
 const queryClient = new QueryClient()
 
@@ -32,7 +33,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             attribute='class'
             defaultTheme='dark'
           >
-            <App />
+            <HashRouter>
+              <App />
+            </HashRouter>
           </NextThemesProvider>
         </NextUIProvider>
       </WalletProvider>
