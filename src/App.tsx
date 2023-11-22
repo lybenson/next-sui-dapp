@@ -4,11 +4,14 @@ import Sidebar from './components/Sidebar'
 import { Routes, Route } from 'react-router-dom'
 import routes from './routes'
 import { Card } from '@nextui-org/react'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
     <main className='flex flex-col h-screen'>
-      <Header />
+      <div className='shrink-0'>
+        <Header />
+      </div>
       <div className='flex h-full flex-1'>
         <Sidebar />
 
@@ -25,6 +28,12 @@ function App() {
           </Routes>
         </Card>
       </div>
+
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+        gutter={8}
+      />
     </main>
   )
 }

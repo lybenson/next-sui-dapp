@@ -35,8 +35,6 @@ export default function Token() {
     coinType: `${packageId}::coin::COIN`
   })
 
-  console.log(coinMetadata)
-
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock()
 
@@ -134,8 +132,8 @@ export default function Token() {
       <div>current network: {account?.chains}</div>
       <div className='flex items-center justify-center mt-3'>
         <Input
-          label='Input Mint amount'
-          color='primary'
+          label='Mint amount'
+          color='default'
           className='max-w-[200px] mr-4'
           onValueChange={setMintAmount}
         />
@@ -144,7 +142,7 @@ export default function Token() {
           onClick={onMint}
           isLoading={minting}
         >
-          Mint {coinMetadata?.symbol}
+          {minting ? 'Minting' : `Mint ${coinMetadata?.symbol}`}
         </Button>
       </div>
 
