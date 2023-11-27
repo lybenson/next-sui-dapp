@@ -163,7 +163,7 @@ export default function Token() {
       <div className='text-left mt-10'>
         <span>Contract code</span>
         <Code
-          color='success'
+          color='primary'
           className=' whitespace-pre-wrap text-left p-4'
         >
           {code}

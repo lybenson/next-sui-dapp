@@ -13,7 +13,7 @@ export default function Sidebar() {
               to={path.pathname}
               className={`${
                 location.pathname === '/' + path.pathname
-                  ? 'bg-zinc-300 text-amber-500 font-bold'
+                  ? 'bg-zinc-300 text-primary font-bold'
                   : ''
               } w-full inline-block rounded-md h-10 leading-10`}
             >
